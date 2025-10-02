@@ -106,7 +106,7 @@ def predict():
     feature_cols = [col for col in df.columns if col not in ['text', 'is_ad', 'image_count']]
     df[feature_cols] = df[feature_cols].fillna(0)
 
-    client = OpenAI(api_key="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")
+    client = OpenAI(api_key="")
 
     # 이미지 병합 + GPT OCR 요청
     base64_img, raw_images = merge_images_vertically(img_urls)
@@ -163,7 +163,7 @@ def predict():
         label = 0
     elif prob >= 0.7:
         label = 1
-    else:
+    else: 
         X_scaled = scaler.transform(df[feature_cols])
         X_scaled = X_scaled.reshape((X_scaled.shape[0], 1, X_scaled.shape[1]))
         recon = anomaly_model.predict(X_scaled)
